@@ -1,4 +1,4 @@
-# Martian Genome Decoder 🧬
+# Martian Genome Decoder
 
 ## Project Overview
 This project is a computational bioinformatics assignment designed to decode the genetic language of a Martian species. Unlike Earth-based biology, the Martian genome utilizes a unique set of nucleotides and a doublet codon structure. 

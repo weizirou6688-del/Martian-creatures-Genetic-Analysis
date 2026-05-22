@@ -3,7 +3,7 @@
 > Reverse-engineering an alien genetic code from raw sequence data — with no
 > prior knowledge of its nucleotides, base-pairing rules, or codon structure.
 
-[![CI](https://github.com/weizirou6688-del/Martian-creatures-Genetic-Analysis/actions/workflows/ci.yml/badge.svg)](https://github.com/weizirou6688-del/Martian-creatures-Genetic-Analysis/actions/workflows/ci.yml)
+[![CI](https://github.com/ava-wei666/Martian-creatures-Genetic-Analysis/actions/workflows/ci.yml/badge.svg)](https://github.com/ava-wei666/Martian-creatures-Genetic-Analysis/actions/workflows/ci.yml)
 ![Coverage](https://img.shields.io/badge/coverage-96%25-brightgreen)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
@@ -136,7 +136,7 @@ Martian-creatures-Genetic-Analysis/
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/weizirou6688-del/Martian-creatures-Genetic-Analysis.git
+git clone https://github.com/ava-wei666/Martian-creatures-Genetic-Analysis.git
 cd Martian-creatures-Genetic-Analysis
 
 # 2. Install dependencies
@@ -180,7 +180,7 @@ Earth-vs-Mars comparison — is available in
 
 ## Author
 
-**Ava Wei** · [GitHub](https://github.com/weizirou6688-del)
+**Ava Wei** · [GitHub](https://github.com/ava-wei666)
 
 ## License
 

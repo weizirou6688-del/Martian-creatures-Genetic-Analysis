@@ -1,0 +1,5 @@
+[tool.pytest.ini_options]
+# Add src/ to the import path so tests can import the pipeline modules
+# directly (e.g. `import sequence_analysis`).
+pythonpath = ["src"]
+testpaths = ["tests"]

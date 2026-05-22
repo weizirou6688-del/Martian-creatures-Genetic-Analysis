@@ -124,7 +124,7 @@ Martian-creatures-Genetic-Analysis/
 ├── tests/                    # Unit, integration & end-to-end tests
 ├── data/                     # Input FASTA sequences
 ├── results/                  # Generated distribution charts
-├── docs/                     # Detailed analysis report (PDF)
+├── docs/                     # Analysis report (PDF) + run screenshot
 ├── .github/workflows/        # Continuous integration
 ├── pyproject.toml
 ├── requirements.txt
@@ -153,31 +153,10 @@ Each stage can also be run on its own, e.g. `python src/transcription_decoder.py
 
 ## Sample Run
 
-```text
-$ python src/decode_gene_b.py
-Stage 5: Gene B analysis
-Deriving transcription key
-Alignment Found! The starting point of DNA segment begin with 0
-Transcribed DNA [A] into RNA [Z] (matching_ratio: 100.00%)
-Transcribed DNA [B] into RNA [Y] (matching_ratio: 100.00%)
-Transcribed DNA [C] into RNA [X] (matching_ratio: 100.00%)
-Transcribed DNA [T] into RNA [U] (matching_ratio: 100.00%)
-DNA[A] -> RNA[Z] -> DNA[A]
-DNA[B] -> RNA[Y] -> DNA[B]
-DNA[C] -> RNA[X] -> DNA[C]
-DNA[T] -> RNA[U] -> DNA[T]
-Calculating codon length
-RNA length: 204, Protein length 102
-Result: No termination codon
-Codon length is 2
-Generating the codon lookup table
-The number of amino acid types : 16
+The full pipeline decoding the unknown Gene B — deriving the transcription key,
+codon length, and codon table, then transcribing and translating:
 
-Gene B length: 204
-
-Generated mRNA sequence: UUYZXYUXUYYUXUZXZXYXYUUYYZUXZUYYZXXX... (204 nt)
-Decoded protein:         AsArAlKNaClNBeBeRnClNaArKNiPbBeSRnNaAr... (102 residues)
-```
+![Terminal output of the Gene B decoding pipeline](docs/sample_run.svg)
 
 ## Testing & Quality
 

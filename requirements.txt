@@ -1,0 +1,4 @@
+# Runtime dependencies for the Martian Genome Decoder.
+# All other imports (re, collections, pathlib) are part of the Python
+# standard library and need no installation.
+matplotlib>=3.5

@@ -128,5 +128,5 @@ def main() -> None:
     print(protein_b_seq)
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     main()

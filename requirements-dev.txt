@@ -1,3 +1,5 @@
-# Development dependencies (testing). Installs the runtime deps too.
+# Development dependencies (testing & linting). Installs the runtime deps too.
 -r requirements.txt
 pytest>=7.0
+pytest-cov>=4.0
+ruff>=0.5

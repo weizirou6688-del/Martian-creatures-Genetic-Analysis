@@ -113,7 +113,10 @@ def check_transcription(
             print(f"DNA[{dna_origin}] -> RNA[{rna_goal}] -> DNA[{sources[0]}]")
         else:
             is_one_to_one = False
-            print(f"error: DNA[{dna_origin}] -> RNA[{rna_goal}] -> {sources} (Inconsistency or missing sources)")
+            print(
+                f"error: DNA[{dna_origin}] -> RNA[{rna_goal}] -> {sources} "
+                "(Inconsistency or missing sources)"
+            )
 
     return is_one_to_one
 
@@ -182,5 +185,5 @@ def main() -> None:
         print("error, Fail to read sequence file")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     main()

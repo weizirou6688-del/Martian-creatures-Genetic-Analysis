@@ -3,3 +3,19 @@
 # directly (e.g. `import sequence_analysis`).
 pythonpath = ["src"]
 testpaths = ["tests"]
+
+[tool.coverage.run]
+source = ["src"]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "F",   # pyflakes
+    "I",   # isort (import ordering)
+    "W",   # pycodestyle warnings
+    "UP",  # pyupgrade
+]

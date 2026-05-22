@@ -82,5 +82,5 @@ def main() -> None:
         print("Error: Failed to read sequence files")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     main()

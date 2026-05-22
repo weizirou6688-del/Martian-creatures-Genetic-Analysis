@@ -6,7 +6,7 @@ import decode_gene_b
 import sequence_analysis
 import transcription_decoder
 
-# --- Stage 1: sequence cleaning -------------------------------------------
+# --- Stage 1: sequence cleaning ------------------------------------------
 
 
 def test_read_file_sequence_cleans_newlines_and_n_padding(tmp_path):
@@ -17,6 +17,29 @@ def test_read_file_sequence_cleans_newlines_and_n_padding(tmp_path):
 
 def test_read_file_sequence_missing_file_returns_none(tmp_path):
     assert sequence_analysis.read_file_sequence(tmp_path / "missing.fa") is None
+
+
+def test_read_file_sequence_all_padding_returns_empty(tmp_path):
+    seq_file = tmp_path / "all_n.fa"
+    seq_file.write_text("NNNNNNNN\n")
+    assert sequence_analysis.read_file_sequence(seq_file) == ""
+
+
+def test_read_file_sequence_empty_file_returns_empty(tmp_path):
+    seq_file = tmp_path / "empty.fa"
+    seq_file.write_text("")
+    assert sequence_analysis.read_file_sequence(seq_file) == ""
+
+
+def test_analyze_sequence_warns_on_empty_input(capsys):
+    sequence_analysis.analyze_sequence("", "Empty Gene")
+    assert "empty" in capsys.readouterr().out.lower()
+
+
+def test_visualize_counts_writes_chart(tmp_path, monkeypatch):
+    monkeypatch.setattr(sequence_analysis, "RESULTS_DIR", tmp_path)
+    sequence_analysis.visualize_counts("Test Chart", {"A": 6, "B": 4}, 10)
+    assert (tmp_path / "test_chart_distribution.png").exists()
 
 
 # --- Stage 2: transcription key ------------------------------------------
@@ -46,6 +69,25 @@ def test_derive_transcription_rules_rejects_ambiguous_pairing():
     assert "A" not in key
 
 
+def test_derive_transcription_rules_flags_non_bijective_key():
+    # 'A' and 'T' both map 100 % to 'Z' -> not a clean one-to-one mapping
+    pair_counts = {("A", "Z"): 5, ("T", "Z"): 5}
+    _, is_valid = transcription_decoder.derive_transcription_rules(pair_counts)
+    assert is_valid is False
+
+
+def test_check_transcription_accepts_clean_bijection():
+    key = {"A": "Z", "T": "U"}
+    reverse = {"Z": ["A"], "U": ["T"]}
+    assert transcription_decoder.check_transcription(key, reverse) is True
+
+
+def test_check_transcription_rejects_many_to_one_mapping():
+    key = {"A": "Z", "T": "Z"}
+    reverse = {"Z": ["A", "T"]}
+    assert transcription_decoder.check_transcription(key, reverse) is False
+
+
 # --- Stage 3: codon length -----------------------------------------------
 
 
@@ -63,6 +105,11 @@ def test_get_codon_length_empty_protein_returns_none():
     assert codon_length.get_codon_length("ABCDEF", "") is None
 
 
+def test_get_codon_length_returns_none_when_no_integer_length():
+    # mRNA length 5, 2 amino acids: 5/2 and 5/3 are both non-integers
+    assert codon_length.get_codon_length("ABCDE", "NaMg") is None
+
+
 # --- Stage 4: codon table ------------------------------------------------
 
 
@@ -77,6 +124,12 @@ def test_lookup_table_records_trailing_stop_codon():
     assert table["XX"] == "STOP"
 
 
+def test_lookup_table_accepts_float_codon_length():
+    # a codon length arriving as a float (e.g. from a division) is normalized
+    table = codon_table.lookup_table_mrna_to_amino("UUZX", "AsBe", 2.0)
+    assert table == {"UU": "As", "ZX": "Be"}
+
+
 # --- Stage 5: transcription & translation --------------------------------
 
 
@@ -87,6 +140,10 @@ def test_transcribe_dna_to_rna_applies_key():
 
 def test_transcribe_marks_unknown_base():
     assert decode_gene_b.transcribe_dna_to_rna("AG", {"A": "Z"}) == "Z?"
+
+
+def test_transcribe_empty_sequence_returns_empty():
+    assert decode_gene_b.transcribe_dna_to_rna("", {"A": "Z"}) == ""
 
 
 def test_translate_rna_to_protein_builds_sequence():
@@ -101,3 +158,7 @@ def test_translate_halts_at_stop_codon():
 
 def test_translate_marks_unknown_codon():
     assert decode_gene_b.translate_rna_to_protein("UUZZ", 2, {"UU": "As"}) == "AsX"
+
+
+def test_translate_empty_sequence_returns_empty():
+    assert decode_gene_b.translate_rna_to_protein("", 2, {"UU": "As"}) == ""

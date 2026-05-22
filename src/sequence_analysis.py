@@ -30,7 +30,7 @@ def read_file_sequence(file_path: str | Path) -> str | None:
     """
     sequence: list[str] = []
     try:
-        with open(file_path, "r") as file:
+        with open(file_path) as file:
             for line in file:
                 line = line.strip()  # remove the newline characters
                 if line:
@@ -103,7 +103,8 @@ def analyze_sequence(sequence: str, label: str) -> None:
     visualize_counts(label, counts, total_len)
 
 
-if __name__ == "__main__":
+def main() -> None:
+    """Run stage 1 standalone on the Gene A reference data."""
     file_paths = {
         "Gene A (DNA)": DATA_DIR / "gene_a.fa",
         "RNA A (mRNA)": DATA_DIR / "rna_a.fa",
@@ -112,3 +113,7 @@ if __name__ == "__main__":
         seq_data = read_file_sequence(path)
         if seq_data:
             analyze_sequence(seq_data, label)
+
+
+if __name__ == "__main__":  # pragma: no cover
+    main()

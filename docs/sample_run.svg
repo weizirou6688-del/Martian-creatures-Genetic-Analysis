@@ -122,6 +122,9 @@
 <clipPath id="terminal-2080325951-line-26">
     <rect x="0" y="635.9" width="1098" height="24.65"/>
             </clipPath>
+<clipPath id="terminal-2080325951-line-27">
+    <rect x="0" y="660.3" width="1098" height="24.65"/>
+            </clipPath>
     </defs>
 
     <rect fill="#292929" stroke="rgba(255,255,255,0.35)" stroke-width="1" x="1" y="1" width="1114" height="731.2" rx="8"/><text class="terminal-2080325951-title" fill="#c5c8c6" text-anchor="middle" x="557" y="27">Martian&#160;Genome&#160;Decoder</text>

@@ -3,7 +3,8 @@
 > Reverse-engineering an alien genetic code from raw sequence data — with no
 > prior knowledge of its nucleotides, base-pairing rules, or codon structure.
 
-![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)
+[![CI](https://github.com/weizirou6688-del/Martian-creatures-Genetic-Analysis/actions/workflows/ci.yml/badge.svg)](https://github.com/weizirou6688-del/Martian-creatures-Genetic-Analysis/actions/workflows/ci.yml)
+![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
 ![matplotlib](https://img.shields.io/badge/matplotlib-3.5%2B-11557C)
 ![License](https://img.shields.io/badge/License-MIT-2EA44F)
 
@@ -103,8 +104,9 @@ DNA → RNA mapping is strictly one-to-one.
 
 ## Tech Stack
 
-- **Language:** Python 3
+- **Language:** Python 3 (fully type-hinted, 3.10+)
 - **Libraries:** `matplotlib` (visualization); `re` and `collections` (standard library)
+- **Tooling:** `pytest` test suite, GitHub Actions CI
 - **Techniques:** dynamic alphabet discovery, sliding-window sequence alignment,
   frequency-ratio analysis, bijection validation, arithmetic codon inference
 
@@ -118,10 +120,14 @@ Martian-creatures-Genetic-Analysis/
 │   ├── codon_length.py           # Stage 3 — derive codon length
 │   ├── codon_table.py            # Stage 4 — build codon table
 │   └── decode_gene_b.py          # Stage 5 — decode Gene B (entry point)
+├── tests/                    # Unit + end-to-end tests (pytest)
 ├── data/                     # Input FASTA sequences
 ├── results/                  # Generated distribution charts
 ├── docs/                     # Detailed analysis report (PDF)
+├── .github/workflows/        # Continuous integration
+├── pyproject.toml
 ├── requirements.txt
+├── requirements-dev.txt
 └── README.md
 ```
 
@@ -144,6 +150,18 @@ python src/sequence_analysis.py
 
 Each stage can also be run on its own, e.g. `python src/transcription_decoder.py`.
 
+## Testing
+
+The pipeline is covered by an **18-test `pytest` suite** — unit tests for every
+stage plus an end-to-end test that decodes Gene B and checks the result against
+the documented protein sequence. Every push is verified automatically by
+**GitHub Actions** across Python 3.10, 3.11, and 3.12.
+
+```bash
+pip install -r requirements-dev.txt
+pytest
+```
+
 ## Full Report
 
 A detailed write-up — methodology, challenges, biological discussion, and an
@@ -153,8 +171,6 @@ Earth-vs-Mars comparison — is available in
 ## Author
 
 **Ava Wei** · [GitHub](https://github.com/weizirou6688-del)
-
-Developed as part of the *CS31420 Computational Bioinformatics* module.
 
 ## License
 

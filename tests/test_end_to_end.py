@@ -63,3 +63,19 @@ def test_codon_table_main_runs():
 
 def test_decode_gene_b_main_runs():
     decode_gene_b.main()
+
+
+# --- Error handling ------------------------------------------------------
+
+
+def test_generate_basic_information_handles_missing_data(tmp_path, monkeypatch):
+    # point the pipeline at an empty directory - no reference data present
+    monkeypatch.setattr(decode_gene_b, "DATA_DIR", tmp_path)
+    key, codon_len, table = decode_gene_b.generate_basic_information()
+    assert (key, codon_len, table) == (None, None, None)
+
+
+def test_decode_gene_b_main_handles_missing_data(tmp_path, monkeypatch, capsys):
+    monkeypatch.setattr(decode_gene_b, "DATA_DIR", tmp_path)
+    decode_gene_b.main()
+    assert "could not" in capsys.readouterr().out.lower()

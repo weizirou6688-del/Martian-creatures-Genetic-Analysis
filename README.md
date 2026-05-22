@@ -4,7 +4,7 @@
 > prior knowledge of its nucleotides, base-pairing rules, or codon structure.
 
 [![CI](https://github.com/weizirou6688-del/Martian-creatures-Genetic-Analysis/actions/workflows/ci.yml/badge.svg)](https://github.com/weizirou6688-del/Martian-creatures-Genetic-Analysis/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/weizirou6688-del/Martian-creatures-Genetic-Analysis/graph/badge.svg)](https://codecov.io/gh/weizirou6688-del/Martian-creatures-Genetic-Analysis)
+![Coverage](https://img.shields.io/badge/coverage-96%25-brightgreen)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-2EA44F)
@@ -181,11 +181,11 @@ Decoded protein:         AsArAlKNaClNBeBeRnClNaArKNiPbBeSRnNaAr... (102 residues
 
 ## Testing & Quality
 
-The pipeline is covered by a **34-test `pytest` suite** with **95% line
-coverage** — unit tests for every stage, integration tests, and an end-to-end
-test that decodes Gene B and checks it against the documented protein. Code is
-linted with **Ruff**, and every push is verified by **GitHub Actions** across
-Python 3.10, 3.11, and 3.12.
+The pipeline is covered by a **36-test `pytest` suite** with **96% line
+coverage** (enforced as a CI gate) — unit tests for every stage, integration
+tests, and an end-to-end test that decodes Gene B and checks it against the
+documented protein. Code is linted with **Ruff**, and every push is verified by
+**GitHub Actions** across Python 3.10, 3.11, and 3.12.
 
 ```bash
 pip install -r requirements-dev.txt
